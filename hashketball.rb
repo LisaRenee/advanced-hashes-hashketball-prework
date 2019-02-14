@@ -131,21 +131,37 @@ def game_hash
 
 end
 
-def num_points_scored(player)
+# write method find_the_player which will return the player stats hash
+def find_the_player(player)
   away_players = game_hash[:away][:players]
   if away_players.key?(player)
-    game_hash[:away][:players][player][:points]
+    away_players[player]
   else
-    game_hash[:home][:players][player][:points]
+    game_hash[:home][:players][player]
   end
+
+# if i call find_the_player("Jeff Adrien")
+# it will return his stats
+end
+
+def num_points_scored(player)
+  found_player = find_the_player(player)
+  found_player[:points]
+  #away_players = game_hash[:away][:players]
+  #if away_players.key?(player)
+    #away_players[player][:points]
+  #else
+    #game_hash[:home][:players][player][:points]
+#  end
   #def home_team_name
   #  game_hash[:home][:team_name]
   #end
 end
+# use the method find_the_player to get shoe size and rebounds
 def shoe_size(player)
   away_players = game_hash[:away][:players]
   if away_players.key?(player)
-    game_hash[:away][:players][player][:shoe]
+    away_players[player][:shoe]
   else
     game_hash[:home][:players][player][:shoe]
 
@@ -201,6 +217,7 @@ game_hash.each do |key, value|
   players[key][:rebounds] = value[:rebounds]
   end
   end
+
 
   players.each do |key, value|
     if value[:shoe] > highest_player[:highest_shoe]
